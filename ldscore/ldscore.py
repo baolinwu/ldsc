@@ -132,10 +132,10 @@ class __GenotypeArrayInMemory__(object):
     def __l2_unbiased__(self, x, n):
         denom = n-2 if n > 2 else n  # allow n<2 for testing purposes
         sq = np.square(x)
-	return sq
-        # ans = sq - (1-sq) / denom
-	# res = ans if ans>0 else 0
-	# return res ## or return sq
+	# return sq
+        ans = sq - (1-sq) / denom
+	res = np.fmax(ans, 0.0)
+	return res ## or return sq
 
     # general methods for calculating sums of Pearson correlation coefficients
     def __corSumVarBlocks__(self, block_left, c, func, snp_getter, annot=None):
